@@ -1,3 +1,5 @@
+.vscode
+.cph
 # Prerequisites
 *.d
 
@@ -47,3 +49,6 @@ _deps
 
 build/
 vcpkg_installed
+
+codecrafters.yml
+README.mod
