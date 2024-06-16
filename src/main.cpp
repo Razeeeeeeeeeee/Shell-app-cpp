@@ -64,10 +64,10 @@ int main() {
     if (path[0] == '/')
 		{absolute_path = path;
     
-	if (absolute_path.empty())
-		return 0;
-	if (chdir(absolute_path.c_str()) == -1)
-		std::cout << "cd: " << path << ": No such file or directory" << std::endl;
+    if (absolute_path.empty())
+      return 0;
+    if (chdir(absolute_path.c_str()) == -1)
+      std::cout << "cd: " << path << ": No such file or directory" << std::endl;
     }
     else if (path[0]== '.'){
     std::string cwd = std::filesystem::current_path().string();
@@ -75,6 +75,18 @@ int main() {
     cwd = std::filesystem::canonical(dir);
     if (chdir(cwd.c_str()) == -1)
 		std::cout << "cd: " << path << ": No such file or directory" << std::endl;
+    }
+    else if (path[0]== '~'){
+      const char *$home = std::getenv("HOME");
+      if (!$home)
+			std::cerr << "cd: $HOME is not set\n" << std::endl;
+		  else
+			absolute_path = std::string($home) + "/" + path.substr(1 /* ~ */);
+
+    if (absolute_path.empty())
+      return 0;
+    if (chdir(absolute_path.c_str()) == -1)
+      std::cout << "cd: " << path << ": No such file or directory" << std::endl;
     }
   }
   else{
