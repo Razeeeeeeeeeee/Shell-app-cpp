@@ -11,7 +11,12 @@ int main() {
   
   std::string input;
   std::getline(std::cin, input);
+  if (input.compare("exit 0")==0){
+    return 0;
+    break;
+  }
 
   std::cout<< input <<": command not found"<<std::endl;
+
   }
 }
