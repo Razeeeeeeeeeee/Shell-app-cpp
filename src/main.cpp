@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 int main() {
   // Flush after every std::cout / std:cerr
@@ -11,12 +12,21 @@ int main() {
   
   std::string input;
   std::getline(std::cin, input);
-  if (input.compare("exit 0")==0){
+
+  int end = input.find(" ");
+  std::string command = input.substr(0,end);
+  std::string arguments = input.substr(end+1);
+
+  if (command.compare("exit")==0){
     return 0;
     break;
   }
-
-  std::cout<< input <<": command not found"<<std::endl;
+  else if (command.compare("echo")==0){
+    
+      std::cout<<arguments<<std::endl;
+  }
+  else
+    std::cout<< input <<": command not found"<<std::endl;
 
   }
 }
