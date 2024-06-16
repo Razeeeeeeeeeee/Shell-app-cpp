@@ -53,6 +53,9 @@ int main() {
             std::cout<<arguments<<" is "<<path<<std::endl;
         }
   }
+  else if (command.compare("pwd")==0){
+    std::cout<<std::filesystem::current_path();
+  }
   else{
     std::string path = get_path(command);
     if(path.empty())
