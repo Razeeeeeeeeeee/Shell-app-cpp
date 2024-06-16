@@ -62,20 +62,21 @@ int main() {
     std::string absolute_path;
     const std::string &path = arguments;
     if (path[0] == '/')
-		absolute_path = path;
+		{absolute_path = path;
     
 	if (absolute_path.empty())
 		return 0;
 	if (chdir(absolute_path.c_str()) == -1)
 		std::cout << "cd: " << path << ": No such file or directory" << std::endl;
-  
+    }
     else if (path[0]== '.'){
     std::string cwd = std::filesystem::current_path().string();
     std::string dir = cwd + '/' + path;
     cwd = std::filesystem::canonical(dir);
     if (chdir(cwd.c_str()) == -1)
-		std::cout << "cd: " << path << ": No such file or directory" << std::endl;}
-    
+		std::cout << "cd: " << path << ": No such file or directory" << std::endl;
+    }
+  }
   else{
     std::string path = get_path(command);
     if(path.empty())
