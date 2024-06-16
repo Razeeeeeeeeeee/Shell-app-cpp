@@ -3,6 +3,8 @@
 #include <string>
 #include <sstream>
 #include <filesystem>
+#include <unistd.h>
+#include <sys/wait.h>
 
 std::string get_path(std::string command){
   std::string path_env = std::getenv("PATH");
@@ -55,6 +57,17 @@ int main() {
   }
   else if (command.compare("pwd")==0){
     std::cout<<std::filesystem::current_path().string()<<std::endl;
+  }
+  else if (command.compare("cd")==0){
+    std::string absolute_path;
+    const std::string &path = arguments;
+    if (path[0] == '/')
+		absolute_path = path;
+	
+	if (absolute_path.empty())
+		return 0;
+	if (chdir(absolute_path.c_str()) == -1)
+		std::cout << "cd: " << path << ": No such file or directory" << std::endl;
   }
   else{
     std::string path = get_path(command);
