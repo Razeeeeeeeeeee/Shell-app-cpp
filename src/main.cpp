@@ -53,8 +53,18 @@ int main() {
             std::cout<<arguments<<" is "<<path<<std::endl;
         }
   }
-  else
-    std::cout<< input <<": command not found"<<std::endl;
-
+  else{
+    std::string path = get_path(command);
+    if(path.empty())
+            std::cout<< command <<": command not found"<<std::endl;
+          else
+            {
+              std::string command = path + " " + arguments;
+              int result = system(command.c_str());
+              if (result == -1) {
+              std::cerr << "Error executing the command" << std::endl;
+            }
+            }
+    }
   }
 }
