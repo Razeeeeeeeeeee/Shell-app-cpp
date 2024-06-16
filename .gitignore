@@ -21,6 +21,8 @@
 # Fortran module files
 *.mod
 *.smod
+*.bin
+*.yml
 
 # Compiled Static libraries
 *.lai
@@ -51,4 +53,5 @@ build/
 vcpkg_installed
 
 codecrafters.yml
-README.mod
+README.md
+*.json
