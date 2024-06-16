@@ -54,7 +54,7 @@ int main() {
         }
   }
   else if (command.compare("pwd")==0){
-    std::cout<<std::filesystem::current_path()<<std::endl;
+    std::cout<<std::filesystem::current_path().string()<<std::endl;
   }
   else{
     std::string path = get_path(command);
