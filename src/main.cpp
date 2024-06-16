@@ -25,6 +25,12 @@ int main() {
     
       std::cout<<arguments<<std::endl;
   }
+  else if (command.compare("type")==0){
+      if(arguments.compare("echo") ==0 || arguments.compare("type") ==0 || arguments.compare("exit")==0)
+        std::cout<<arguments<<" is a shell builtin"<<std::endl;
+      else
+        std::cout<<arguments<<": not found"<<std::endl;
+  }
   else
     std::cout<< input <<": command not found"<<std::endl;
 
